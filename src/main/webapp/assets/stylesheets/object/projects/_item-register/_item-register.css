@@ -1,0 +1,23 @@
+.main {
+	text-align: center;
+}
+
+.main__title {
+	margin-bottom: 20px;
+}
+
+.main__errorMessage {
+	color: red;
+	margin-bottom: 15px;
+}
+
+.main__form {
+	padding-bottom: 10px;
+}
+
+.main__backButton {
+	width: 150px;
+	height: 40px;
+	font-size: 16px;
+	border: 2px solid #464646;
+}

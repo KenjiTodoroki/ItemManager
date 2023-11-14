@@ -1,0 +1,22 @@
+.main {
+	text-align: center;
+	padding: 20px;
+}
+
+.main__logoOuter {
+	padding-bottom: 40px;
+}
+
+.main__logoInner {
+	margin: auto;
+	width: 150px;
+}
+
+.main__title {
+	margin-bottom: 20px;
+}
+
+.main__errorMessage {
+	color: red;
+	margin-bottom: 15px;
+}
