@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ItemDetailServlet
  */
-@WebServlet("/itemDetail")
+@WebServlet("/item-detail")
 public class ItemDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -54,18 +55,29 @@ public class ItemDetailServlet extends HttpServlet {
 
 			con = (Connection) DriverManager.getConnection(DSN, USER, PASSWORD);
 			// SQLを実行
-			String sql = "SELECT * FROM m_item";
+			String sql = "select\n"
+					+ "  mi.item_id,\n"
+					+ "  mi.item_name,\n"
+					+ "  mm.maker_name,\n"
+					+ "  mi.price,\n"
+					+ "  mi.insert_datetime,\n"
+					+ "  mi.update_datetime\n"
+					+ "from\n"
+					+ "  m_item mi\n"
+					+ "  inner join m_maker mm on mi.maker_code = mm.maker_code";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			
+			SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 			while (rs.next()) {
 				String[] data = new String[6];
-				data[0] = rs.getString("item_id");
-				data[1] = rs.getString("item_name");
-				data[2] = rs.getString("maker_code");
-				data[3] = rs.getString("price");
-				data[4] = rs.getString("insert_datatime");
-				data[5] = rs.getString("update_datatime");
+				data[0] = String.valueOf(rs.getInt("mi.item_id"));
+				data[1] = rs.getString("mi.item_name");
+				data[2] = rs.getString("mm.maker_name");
+				data[3] = String.valueOf(rs.getInt("mi.price"));
+				data[4] = simpleDate.format(rs.getTimestamp("mi.insert_datetime"));
+				data[5] = simpleDate.format(rs.getTimestamp("mi.update_datetime"));
 				list.add(data);
 			}
 			rs.close();
