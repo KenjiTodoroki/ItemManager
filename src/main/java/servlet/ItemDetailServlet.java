@@ -51,7 +51,7 @@ public class ItemDetailServlet extends HttpServlet {
 				+ "  mi.update_datetime\n"
 				+ "from\n"
 				+ "  m_item mi\n"
-				+ "  inner join m_maker mm on mi.maker_code = mm.maker_code";
+				+ "  inner join m_maker mm on mi.maker_code = mm.maker_code;";
 		// try with resources & プリペアドステイトメントでConnectionManagerと連携
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
