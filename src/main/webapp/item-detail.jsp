@@ -11,6 +11,7 @@ ArrayList<String[]> list = (ArrayList<String[]>) request.getAttribute("data");
 <title>商品詳細画面</title>
 </head>
 <body>
+	<%@ include file="header.jsp"%>
 	<div class="main">
 		<main>
 			<h2>商品詳細</h2>
@@ -39,10 +40,10 @@ ArrayList<String[]> list = (ArrayList<String[]>) request.getAttribute("data");
 						<td><%=data[4]%></td>
 						<td><%=data[5]%></td>
 						<td>
-							<%-- <c:url let="item-edit" value="/itemUpdateServlet">
-								<c:param name="id" value="<% String.valueOf(data.item_id()) %>"></c:param>
+							<%-- <c:url let="item-edit" value="/ItemEditServlet">
+								<c:param name="id" value="<% String.valueOf(data.itemId()) %>"></c:param>
 							</c:url> --%>
-							<form action="item-edit" method="post">
+							<form action="item-edit.jsp" method="post">
 								<input type="submit" name="button" value="商品編集">
 								<%-- <input type="hidden" name="itemId" value="<%=item.getItemId() %>"> --%>
 							</form>
